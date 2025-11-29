@@ -59,8 +59,7 @@
                 title: "Humo de Obra",
                 author: "Javier Dantas",
                 date: "29 Nov 2025",
-                // CUANDO TENGAS EL LINK DE LA IMAGEN, PONLO DENTRO DE LAS COMILLAS:
-                // Ejemplo: image: "https://i.postimg.cc/TuCodigo/foto.jpg",
+                // Imagen cargada correctamente desde Postimages
                 image: "https://i.postimg.cc/K8wGL72B/Gemini-Generated-Image-8ndzi78ndzi78ndz.png", 
                 content: "Los albañiles tienen en su contratación un derecho no escrito: el de percibir un asado para todos en los hitos importantes durante la obra. Es decir que los obreros trabajan durante la mañana y luego al mediodía compran la carne y todo para hacer un asado en la obra. Esto generalmente sucede los “viernes de asados”. Entre materiales y la obra en construcción, el fuego se hace presente. El humo recorre habitaciones y pisos del lugar.\n\nEn algunas religiones y creencias populares de Latinoamérica tienen la particularidad de utilizar el humo para espantar los malos espíritus. Sin embargo, un buen día en la obra de un edificio, los obreros habían terminado el llenado de losa y, estando allí el maestro de obra, recibe la pregunta por el asado, quien consulta con el dueño. Pero al desconocer o enfrentarse con esta disquisición, le pareció injusto y decidió no pagar nada. Aún así, los descontentos obreros se propusieron a hacer una colecta para hacer su asado de viernes, como era costumbre con otros patrones. De todos modos, el dueño insistió en que no hagan el asado, por cierto temor a reclamo de pagarlo, que el hecho de cocinar atrase la obra y un poco por envidia.\n\nAl enterarse un sindicalista, se presentó el viernes siguiente al mediodía en el lugar. El representante de la UOCRA observó la negación. Se acercó al dueño y le comunicó amigablemente que existe un convenio colectivo donde él estaba obligado a pagar por el tiempo de cocción de la carne. Además, le sugirió que pague al menos un asado al finalizar la obra, como un incentivo para los trabajadores. El hombre se desentendió de la ley y del “pago extra”, ya que argumentaba que ya estaba pagando correctamente por el trabajo, ni más ni menos. Pero el sindicalista ya con otro semblante, le dijo que esto lo iba a lamentar y sin dar más explicaciones, se fue. La obra quedó culminada, no hubo un día de asado durante la construcción. Y si bien había quedado perfectamente terminada, las operaciones de preventa comenzaron a cancelarse sin razón alguna. No recibía visitas ni interés alguno. El dueño no comprendía el por qué, se lo atribuyó a una maniobra mafiosa de los obreros o el sindicato mismo, pero nunca pudo probar nada. La construcción completa continúa sin habitarse y el deterioro cada vez más presente. Se dice que algunos vecinos escuchan voces y ven algunas sombras por las noches, como una construcción fantasmagórica y abandonada.",
                 tags: ["Relato", "Urbano"]
@@ -68,7 +67,7 @@
         ];
 
         // ----------------------------------------------------------------------
-        // CÓDIGO
+        // CÓDIGO DE LA APLICACIÓN
         // ----------------------------------------------------------------------
 
         const LienzoLiterario = () => {
@@ -251,12 +250,27 @@
                 );
             };
 
-            const root = ReactDOM.createRoot(document.getElementById('root'));
-            root.render(
-                <div className="font-sans selection:bg-yellow-200 selection:text-black">
-                    <LienzoLiterario />
+            // ESTA ES LA PARTE QUE FALTABA Y QUE CAUSABA EL ERROR:
+            // Cierre del componente LienzoLiterario y renderizado principal
+            
+            return (
+                <div className={`min-h-screen transition-colors duration-700 ease-in-out font-sans selection:bg-yellow-200 selection:text-black ${darkMode ? 'bg-zinc-950 text-zinc-200 selection:bg-fuchsia-900 selection:text-white' : 'bg-[#f4f1ea] text-[#2c2926]'}`}>
+                    <Navigation />
+                    <main>
+                        {view === 'library' && <Library />}
+                        {view === 'reader' && <Reader />}
+                        {view === 'composer' && <Composer />}
+                    </main>
                 </div>
             );
-        </script>
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(
+            <div className="font-sans selection:bg-yellow-200 selection:text-black">
+                <LienzoLiterario />
+            </div>
+        );
+    </script>
 </body>
 </html>
